@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import json
-import uuid
+from uuid import uuid4
 from datetime import datetime
 """
 module models/base_model.py - base model
@@ -11,11 +11,24 @@ module models/base_model.py - base model
 class BaseModel:
     """defines all common attributes/methods for other classes"""
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """constructor"""
-        self.id = uuid.uuid4()
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if kwargs:
+            for k, v in kwargs.items():
+                if k == '__class__':
+                    continue
+                elif k == 'created_at':
+                    self.created_at = (datetime.
+                                       strptime(v, "%Y-%m-%dT%H:%M:%S.%f"))
+                elif k == 'updated_at':
+                    self.updated_at = (datetime.
+                                       strptime(v, "%Y-%m-%dT%H:%M:%S.%f"))
+                else:
+                    setattr(self, k, v)
+        else:
+            self.id = uuid4()
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """informal string representation of an object"""
