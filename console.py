@@ -103,14 +103,14 @@ class HBNBCommand(cmd.Cmd):
         elif len(arg) == 3:
             print("** value missing **")
         else:
-            for v in objects.values():
-                try:
-                    atribute = type(getattr(v, arg[2]))
-                    arg[3] = atribute(arg[3])
-                except AttributeError:
-                    pass
-                setattr(v, arg[2], arg[3].strip('"'))
-                storage.save()
+            value = objects[f"{arg[0]}.{arg[1]}"]
+            try:
+                atribute = type(getattr(value, arg[2]))
+                arg[3] = atribute(arg[3])
+            except AttributeError:
+                pass
+            setattr(value, arg[2], arg[3].strip('"'))
+            storage.save()
 
 
 if __name__ == '__main__':
