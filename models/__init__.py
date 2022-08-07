@@ -1,7 +1,9 @@
 #!/usr/bin/python3
-from models.engine.file_storage import FileStorage
-"""models/__init__.py - setup db engine"""
+"""this is the doc string for models module
+"""
 
 
-storage = FileStorage()
+from models.engine import file_storage
+
+storage = file_storage.FileStorage()
 storage.reload()
