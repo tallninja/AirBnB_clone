@@ -14,4 +14,4 @@ models/classes.py - contains a dictionary of all the classes
 
 
 classes = {"BaseModel": BaseModel, "User": User, "State": State, "City": City
-           "Amenity": Amenity, "Place": Place, "Review": Review}
+           ,"Amenity": Amenity, "Place": Place, "Review": Review}
