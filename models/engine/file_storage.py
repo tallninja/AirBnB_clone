@@ -38,7 +38,7 @@ class FileStorage():
         # TODO not sure if this check is needed for holberton checker
         try:
             obj_d = obj.to_dict()
-        except:
+        except Exception as e:
             raise TypeError('object passed to filestorage has no to_dict()')
         key = obj_d['__class__'] + '.' + str(obj_d['id'])
         self.__objects[key] = obj
@@ -50,7 +50,7 @@ class FileStorage():
             key = obj.__class__.__name__ + '.' + str(obj.id)
             del self.__objects[key]
             return True
-        except:
+        except Exception as e:
             return False
 
     def save(self):
@@ -70,7 +70,7 @@ class FileStorage():
         try:
             with open(self.__file_path, 'r', encoding='utf-8') as myFile:
                 my_obj_dump = myFile.read()
-        except:
+        except Exception as e:
             return
         objects = eval(my_obj_dump)
         for (k, v) in objects.items():
