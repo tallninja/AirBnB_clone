@@ -111,7 +111,7 @@ class HBNBCommand(cmd.Cmd):
                                               {})
                         else:
                             attr_value = obj.__class__(attr_value)
-            except:
+            except Exception as e:
                 return
         setattr(objects[string_key], attr_name, attr_value)
         objects[string_key].save()
@@ -200,6 +200,7 @@ class HBNBCommand(cmd.Cmd):
         """do nothing after each loop
         """
         pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
