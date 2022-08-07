@@ -1,8 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 import json
 from uuid import uuid4
 from datetime import datetime
+import models
+
 """
 module models/base_model.py - base model
 """
@@ -26,9 +28,10 @@ class BaseModel:
                 else:
                     setattr(self, k, v)
         else:
-            self.id = uuid4()
+            self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         """informal string representation of an object"""
@@ -40,6 +43,7 @@ class BaseModel:
         updated_at with the current datetime
         """
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """
