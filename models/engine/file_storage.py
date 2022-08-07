@@ -2,6 +2,7 @@
 
 import json
 import os
+from models.classes import classes
 from models.base_model import BaseModel
 
 """
@@ -16,7 +17,6 @@ class FileStorage:
 
     __file_path = 'file.json'
     __objects = {}
-    classes = {"BaseModel": BaseModel}
 
     def all(self):
         """returns the dictionary __objects"""
@@ -42,4 +42,4 @@ class FileStorage:
             with open(self.__file_path, 'r', encoding='utf-8') as json_file:
                 objects_dict = json.load(json_file)
         for k, v in objects_dict.items():
-            self.__objects[k] = self.classes[v['__class__']](**v)
+            self.__objects[k] = classes[v['__class__']](**v)
