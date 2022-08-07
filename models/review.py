@@ -1,15 +1,22 @@
 #!/usr/bin/python3
+"""review module
+"""
 
+
+import datetime
+import uuid
 from models.base_model import BaseModel
-
-"""
-models/review.py - defines a review
-"""
 
 
 class Review(BaseModel):
-    """defines a review"""
+    """review model inherits from BaseModel
+    """
 
     place_id = ""
     user_id = ""
-    rext = ""
+    text = ""
+
+    def __init__(self, *args, **kwargs):
+        """init method for review class used in instantiation
+        """
+        super().__init__(*args, **kwargs)
